@@ -8,6 +8,9 @@ The article's implementation algorithms are inconsistant and
 hard to follow. However, I failed to replicate it regardless
 from a lack of time from working against other deadlines.
 
+I could not reproduce Figure 4 from the article because my
+implemenation would keep looping when finding an augmenting
+path. This could probably be fixed if I had more time.
 However, I did get it to work for a simple linear graph in 
 figure 2 from the article. That was able to be reproduced
 which resulted in the following output:
