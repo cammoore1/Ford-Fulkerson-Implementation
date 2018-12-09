@@ -26,8 +26,8 @@ Vertex D:
 	D --> E
 	0 / 10
 Vertex E:
-	E --> F
-	0 / 20
+	E --> F\n
+	0 / 20\n
 Vertex F:
 
 
