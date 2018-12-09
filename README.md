@@ -15,7 +15,7 @@ However, I did get it to work for a simple linear graph in
 figure 2 from the article. That was able to be reproduced
 which resulted in the following output:
 
-## This is the original graph from Figure 2 which is testOne() wihtin FF.java
+## This is the original graph from Figure 2 which is testOne() within FF.java
 Vertex A:<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; A --> B<br /> 
 	&nbsp; &nbsp; &nbsp; &nbsp;0 / 10<br />
