@@ -12,7 +12,7 @@ However, I did get it to work for a simple linear graph in
 figure 2 from the article. That was able to be reproduced
 which resulted in the following output:
 
-# This is the original graph
+## This is the original graph
 Vertex A:<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; A --> B<br /> 
 	&nbsp; &nbsp; &nbsp; &nbsp;0 / 10<br />
@@ -31,7 +31,7 @@ Vertex E:<br />
 Vertex F:<br />
 
 
-# This is the graph after the algorithm runs
+## This is the graph after the algorithm runs
 Vertex A:<br />
 	&nbsp; &nbsp; &nbsp; &nbsp;A --> B<br />
 	&nbsp; &nbsp; &nbsp; &nbsp;10 / 10<br />
