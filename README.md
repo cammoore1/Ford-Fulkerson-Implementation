@@ -1,5 +1,5 @@
 # Ford-Fulkerson Implementation
-Hours work on: 10 - 12 or so
+Hours work on: 10 - 12 or so. <br />
 This repository is for a school project. 
 I failed to successfully replicate the algorithm described here: 
 https://ieeexplore.ieee.org/document/7423216.
