@@ -1,4 +1,4 @@
-# Ford-Fulkerson-Implementation
+# Ford-Fulkerson Implementation
 
 This repository is for a school project. 
 I failed to successfully replicate the algorithm described here: 
