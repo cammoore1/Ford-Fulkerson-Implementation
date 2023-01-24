@@ -1,6 +1,8 @@
 package fordFulkerson;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * This class is an implementation of the Ford-Fulkerson
@@ -27,15 +29,14 @@ public class FordFulkersonAlgo {
     {
         DiGraph copy = network.copy();
         ArrayList<Edge> copyEdges = copy.getEdges();
-        for (int i = 0; i < copyEdges.size(); i++)
-        {
-            Edge curr = copyEdges.get(i);
-            curr.setValue(curr.getCapacity() - curr.getWeight());
-        }
+//        for (int i = 0; i < copyEdges.size(); i++)
+//        {
+//            Edge curr = copyEdges.get(i);
+//            curr.setValue(curr.getCapacity() - curr.getWeight());
+//        }
         return copy;
     }
-    
-    
+
     /**
      * Finds an augmenting path from origin to dest
      * @param origin The source node
@@ -45,32 +46,59 @@ public class FordFulkersonAlgo {
     private static ArrayList<Edge> findAP(Vertex origin, Vertex dest)
     {
         ArrayList<Vertex> visited = new ArrayList<Vertex>();
-        ArrayList<Vertex> queue = new ArrayList<Vertex>();
-        ArrayList<Edge> path = new ArrayList<Edge>();
-        queue.add(origin);
-        
-        while (queue.size() > 0)
+        Stack<Edge> path = new Stack<>();
+
+        findAPHelper(origin, dest, path, visited);
+
+
+        ArrayList<Edge> pathList = new ArrayList<>(path);
+
+        return pathList;
+    }
+
+    private static void findAPHelper(Vertex origin, Vertex dest, Stack<Edge> path, ArrayList<Vertex> visited)
+    {
+        if (origin == dest || (path.size() > 0 && path.peek().getDest() == dest))
         {
-            Vertex v = queue.remove(0);
-            ArrayList<Edge> vEdges = v.getEdges();
-            for (int i = 0; i < vEdges.size(); i++)
+            return;
+        }
+
+        visited.add(origin);
+        ArrayList<Edge> vEdges = origin.getEdges();
+
+
+        for (int i = 0; i < vEdges.size(); i++)
+        {
+            if (path.size() > 0 && path.peek().getDest() == dest) {
+                return;
+            }
+            Edge curr = vEdges.get(i);
+            if (!visited.contains(dest)  &&
+                    curr.getCapacity() - curr.getValue() != 0)
             {
-                Edge curr = vEdges.get(i);
-                
-                if (!visited.contains(curr.getDest()) && 
-                    curr.getDest() != origin &&
-                    curr.getValue() != 0)
+                path.push(curr);
+                if (curr.getDest() == dest)
                 {
-                    visited.add(curr.getDest());
-                    queue.add(curr.getDest());
-                    path.add(curr);
+                    return;
+                }
+                findAPHelper(curr.getDest(), dest, path, visited);
+                if (path.size() > 0 && path.peek().getDest() != dest)
+                {
+                    while (path.size() > 0 && path.peek().getDest() != origin)
+                    {
+                        path.pop();
+                    }
                 }
             }
         }
-        return path;
+        if (path.size() > 0 && path.peek().getDest() != dest)
+        {
+            while (path.size() > 0 && path.peek().getDest() != origin)
+            {
+                path.pop();
+            }
+        }
     }
-    
-    
     /**
      * Gets the edge with the smallest capacity
      * @param augmentingPath The augmenting path to find the smallest
@@ -81,13 +109,13 @@ public class FordFulkersonAlgo {
     {
         if (augmentingPath.size() > 0)
         {   
-            int smallestCapacity = augmentingPath.get(0).getCapacity();
+            int smallestCapacity = augmentingPath.get(0).getCapacity() - augmentingPath.get(0).getValue();
             for (int i = 0; i < augmentingPath.size(); i++)
             {
                 Edge curr = augmentingPath.get(i);
-                if (curr.getCapacity() < smallestCapacity)
+                if (curr.getCapacity() - curr.getValue() < smallestCapacity)
                 {
-                    smallestCapacity = curr.getValue();
+                    smallestCapacity = curr.getCapacity() - curr.getValue();
                 }
             }
             return smallestCapacity;
@@ -107,7 +135,7 @@ public class FordFulkersonAlgo {
         for (int i = 0; i < augmentingPath.size(); i++)
         {
             Edge curr = augmentingPath.get(i);
-            curr.setWeight(smallestAugment + curr.getWeight());
+            curr.setValue(smallestAugment + curr.getValue());
         }
     }
     
@@ -139,19 +167,19 @@ public class FordFulkersonAlgo {
         {
             int smallestAugment = getSmallestAugment(path);
             fillAugmentingPath(path, smallestAugment);
-            residualNetwork = residualNetwork(residualNetwork);
-            vertices = residualNetwork.getVertices();
-            for (int i = 0; i < vertices.size(); i++)
-            {
-                if (src.getName().equals(vertices.get(i).getName()))
-                {
-                    src = vertices.get(i);
-                }
-                else if (sink.getName().equals(vertices.get(i).getName()))
-                {
-                    sink = vertices.get(i);
-                }
-            }
+//            residualNetwork = residualNetwork(residualNetwork);
+//            vertices = residualNetwork.getVertices();
+//            for (int i = 0; i < vertices.size(); i++)
+//            {
+//                if (src.getName().equals(vertices.get(i).getName()))
+//                {
+//                    src = vertices.get(i);
+//                }
+//                else if (sink.getName().equals(vertices.get(i).getName()))
+//                {
+//                    sink = vertices.get(i);
+//                }
+//            }
             path = findAP(src, sink);
         }
         return residualNetwork;

@@ -27,7 +27,7 @@ public class Edge {
         }
         this.capacity = capacity;
         this.weight = weight;
-        this.value = capacity - weight;
+        this.value = 0;
         this.src = src;
         this.dest = dest;
     }
@@ -171,7 +171,7 @@ public class Edge {
         s.append(" --> ");
         s.append(dest.getName());
         s.append("\n\t");
-        s.append(weight);
+        s.append(value);
         s.append(" / ");
         s.append(capacity);
         return s.toString();
