@@ -1,7 +1,8 @@
 # Ford-Fulkerson Implementation
 <br />
-This repository is for a school / side project. 
-I successfully replicate the algorithm described here: 
+I successfully replicated the algorithm described here for
+the Ford-Fulkerson algorithm which finds the maximum flow 
+for a network: 
 https://ieeexplore.ieee.org/document/7423216.
 
 The article's implementation algorithms are inconsistant and
