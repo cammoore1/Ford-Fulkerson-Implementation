@@ -1,19 +1,20 @@
 # Ford-Fulkerson Implementation
-Hours work on: 10 - 12 or so. <br />
+<br />
 This repository is for a school / side project. 
-I failed to successfully replicate the algorithm described here: 
+I successfully replicate the algorithm described here: 
 https://ieeexplore.ieee.org/document/7423216.
 
 The article's implementation algorithms are inconsistant and
-hard to follow. However, I failed to replicate it regardless
-from a lack of time from working against other deadlines.
+hard to follow. However, I managed to implement the algorithm
+regardless with a bit of changes and through the use of a 
+depth-first-search.
 
-I could not reproduce Figure 4 from the article because my
-implemenation would keep looping when finding an augmenting
-path. This could probably be fixed if I had more time.
-However, I did get it to work for a simple linear graph in 
-figure 2 from the article. That was able to be reproduced
-which resulted in the following output:
+Three tests are included that output text representing the set 
+of six figures from the paper. The algorithm matches the first
+two sets. However, it varies slightly from the third. This seems
+to just be a difference in the paths taken by the algorithms.
+Both still achieve the same max flow.
+
 
 ## This is the original graph from Figure 2 which is testOne() within FF.java
 Vertex A:<br />
